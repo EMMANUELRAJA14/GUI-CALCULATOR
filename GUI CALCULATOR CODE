@@ -1,0 +1,116 @@
+
+from tkinter import *
+
+a=Tk()
+a.title("GUI Calculator")
+a.configure(bg='black')
+label=Label(a,text="ENTER THE NUMBERS").pack()
+
+a.geometry('550x600')
+
+b= Button(a, text = 'Close',bd='5',command = a.destroy)
+
+b.pack(side = 'bottom') 
+
+equation=StringVar()
+expression=""
+expression_field = Entry(a, textvariable=equation)
+
+def all_clear():
+     global expression
+     expression=""
+     equation.set("")
+
+def num_click(num):
+    global expression
+    expression = expression + str(num)
+    equation.set(expression)
+ 
+def calculate():
+ 
+    try:
+ 
+        global expression
+        total = str(eval(expression))
+        equation.set(total)
+        expression = ""
+
+    except:
+ 
+        equation.set(" error ")
+        expression = ""
+    
+def btnDelete():
+    global expression
+    expression=expression[:-1]
+    equation.set(expression)
+
+
+
+
+c= Entry(a,font=('Century', 12),width=100,justify='right',textvariable=equation)
+c.pack(padx=100,pady= 20)
+
+ 
+
+bc= Button(a, text='calculate',bd='3',padx=20,pady=15,command=lambda:calculate())
+bc.place(x=230,y=120)
+b1= Button(a, text='1',bd='3',padx=20,pady=15,command=lambda:num_click(1))
+b1.place(x=50,y=210)
+
+b4= Button(a, text='4',bd='3',padx=20,pady=15,command=lambda:num_click(4))
+b4.place(x=50,y=280)
+
+b7= Button(a, text='7',bd='3',padx=20,pady=15,command=lambda:num_click(7))
+b7.place(x=50,y=350)
+
+b2= Button(a, text='2',bd='3',padx=20,pady=15,command=lambda:num_click(2))
+b2.place(x=150,y=210)
+
+b5= Button(a, text='5',bd='3',padx=20,pady=15,command=lambda:num_click(5))
+b5.place(x=150,y=280)
+
+b8= Button(a, text='8',bd='3',padx=20,pady=15,command=lambda:num_click(8))
+b8.place(x=150,y=350)
+
+b3= Button(a, text='3',bd='3',padx=20,pady=15,command=lambda:num_click(3))
+b3.place(x=250,y=210)
+
+b6= Button(a, text='6',bd='3',padx=20,pady=15,command=lambda:num_click(6))
+b6.place(x=250,y=280)
+
+b9= Button(a, text='9',bd='3',padx=20,pady=15,command=lambda:num_click(9))
+b9.place(x=250,y=350)
+
+b00= Button(a, text='00',bd='3',padx=20,pady=15,command=lambda:num_click('00'))
+b00.place(x=250,y=420)
+
+b0= Button(a, text='0',bd='3',padx=20,pady=15,command=lambda:num_click(0))
+b0.place(x=150,y=420)
+
+b01= Button(a, text='+',bd='3',padx=20,pady=15,command=lambda:num_click('+'))
+b01.place(x=350,y=210)
+
+b02= Button(a, text='-',bd='3',padx=20,pady=15,command=lambda:num_click('-'))
+b02.place(x=350,y=280)
+
+b03= Button(a, text='*',bd='3',padx=20,pady=15,command=lambda:num_click('*'))
+b03.place(x=350,y=350)
+
+b04= Button(a, text='/',bd='3',padx=20,pady=15,command=lambda:num_click('/'))
+b04.place(x=350,y=420)
+
+b05= Button(a, text='.',bd='3',padx=20,pady=15,command=lambda:num_click('.'))
+b05.place(x=50,y=420)
+
+b06= Button(a, text='AC',bd='3',padx=20,pady=50,command=lambda:all_clear())
+b06.place(x=430,y=210)
+
+b07= Button(a, text='DEL',bd='3',padx=20,pady=50,command=lambda:btnDelete())
+b07.place(x=430,y=350)
+
+
+
+a.mainloop()
+
+
